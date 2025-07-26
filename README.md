@@ -1,4 +1,4 @@
-<img width="3200" height="2000" alt="arch1" src="https://github.com/user-attachments/assets/7e1f07ee-f101-4ac4-a133-66fb8bc71670" />
+<img width="1920" height="1080" alt="1753566495" src="https://github.com/user-attachments/assets/ab8eb224-10e1-4e42-b56a-5078cf1fcdbc" />
 
 # [NVIDIA]
 My extremely simple desktop configuration for an X11 nvidia system , tailored for my personal system. 
