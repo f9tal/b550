@@ -3,4 +3,4 @@
 
 
 # [NVIDIA]
-My extremely simple desktop configuration for an X11 nvidia system , tailored for my personal system. 
+My extremely simple desktop configuration for an X11 nvidia system , tailored for my personal usecase. 
