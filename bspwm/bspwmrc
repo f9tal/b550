@@ -1,0 +1,45 @@
+#! /bin/sh
+
+sleep 2 
+
+# Launch essential programs
+pgrep -x sxhkd >/dev/null || sxhkd &
+pgrep -x lxsession >/dev/null || lxsession &
+pgrep -x picom >/dev/null || picom &
+pgrep -x pcmanfm >/dev/null || pcmanfm --daemon-mode &
+
+# Set up monitors and desktops
+bspc monitor DP-4 -d I II III IV V      # Main monitor
+bspc monitor DP-2 -d VI VII VIII    # Rotated vertical monitor
+bspc monitor HDMI-0 -d IX X         # Third monitor
+
+#pgrep -x tint2 >/dev/null || /usr/bin/tint2 &
+$HOME/.config/tint2/tint2rc &
+
+# Configure core bspwm settings
+bspc config border_width          1
+bspc config window_gap            0
+bspc config split_ratio           0.50
+bspc config top_padding           0
+
+# Behavior settings
+bspc config borderless_monocle    true
+bspc config gapless_monocle       true
+bspc config single_monocle        false
+bspc config click_to_focus        true
+bspc config focus_by_distance     true
+bspc config focus_follows_pointer false
+bspc config history_aware_focus   true
+
+# Window removal settings
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+
+# Pointer settings
+bspc config pointer_motion_interval 1
+
+# Source application-specific rules
+RULES_FILE="$HOME/.config/bspwm/rules.sh"
+if [ -f "$RULES_FILE" ]; then
+    sh "$RULES_FILE"
+fi

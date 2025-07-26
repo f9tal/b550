@@ -1,0 +1,103 @@
+# CORE
+super + Return
+    alacritty
+
+super + @space
+    rofi -show drun -show-icons
+
+super + w
+    firefox
+
+super + e
+    pcmanfm
+
+ctrl + alt + h
+    rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' -show-icons -font "Monospace"
+
+super + alt + p
+    killall -q picom; picom
+
+super + alt + shift + p
+    killall picom
+
+# BSPWM & SXHKD
+super + Escape
+    pkill -USR1 -x sxhkd
+
+super + alt + {q,r}
+    bspc {quit,wm -r}
+
+super + q
+    bspc node -{c,k}
+
+# APPLICATIONS
+super + shift + w
+    libreoffice
+super + d
+    discord
+super + shift + a
+    spotify
+super + shift + q
+    qbittorrent
+super + alt + w
+    chromium
+super + shift + p
+    alacritty --command htop
+super + shift + i
+    pavucontrol
+super + shift + enter
+    alacritty --command bash
+super + alt + a
+    alacritty --command cmus
+super + shift + v
+    alacritty --command mullvad connect & exit
+super + alt + v
+    alacritty --command mullvad disconnect & exit
+
+# BSPWM: WINDOW
+super + {t,shift + t,s,f}
+    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + ctrl + {m,x,y,z}
+    bspc node -g {marked,locked,sticky,private}
+super + m
+    bspc desktop -l next
+super + g
+    bspc node -s biggest.window
+super + y
+    bspc node newest.marked.local -n newest.!automatic.local
+
+# BSPWM: FOCUS & SWAP
+super + {_,shift + }{h,j,k,l}
+    bspc node -{f,s} {west,south,north,east}
+super + {p,b,comma,period}
+    bspc node -f @{parent,brother,first,second}
+super + {_,shift + }c
+    bspc node -f {next,prev}.local.!hidden.window
+super + {grave,Tab}
+    bspc {node,desktop} -f last
+super + {o,i}
+    bspc wm -h off; \
+    bspc node {older,newer} -f; \
+    bspc wm -h on
+
+# BSPWM: DESKTOPS
+super + bracket{left,right}
+    bspc desktop -f {prev,next}.local
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} '^{1-9,10}'
+
+# BSPWM: PRESELECT & RESIZE
+super + ctrl + {h,j,k,l}
+    bspc node -p {west,south,north,east}
+super + ctrl + {1-9}
+    bspc node -o 0.{1-9}
+super + ctrl + space
+    bspc node -p cancel
+super + ctrl + shift + space
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+super + alt + {h,j,k,l}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+super + alt + shift + {h,j,k,l}
+    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+super + {Left,Down,Up,Right}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
